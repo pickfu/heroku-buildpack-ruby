@@ -535,7 +535,7 @@ EOF
     instrument 'ruby.install_ruby' do
       # Could do a compare operation to avoid re-downloading ruby
       return false unless ruby_version
-      installer = LanguagePack::Installers::RubyInstaller.installer(ruby_version).new(@stack)
+      installer = LanguagePack::Installers::RubyInstaller.installer(ruby_version).new("heroku-16")
 
       @ruby_download_check = LanguagePack::Helpers::DownloadPresence.new(ruby_version.file_name)
       @ruby_download_check.call
