@@ -545,6 +545,7 @@ EOF
       end
 
       installer.install(ruby_version, install_path)
+      puts "Install Path: #{install_path}"
 
       @outdated_version_check = LanguagePack::Helpers::OutdatedRubyVersion.new(
         current_ruby_version: ruby_version,
