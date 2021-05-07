@@ -27,5 +27,6 @@ EOM
 
   compile_buildpack_v2 "$BUILD_DIR" "$CACHE_DIR" "$ENV_DIR" "https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/jvm.tgz" "heroku/jvm"
 fi
-ln -s /lib/x86_64-linux-gnu/libreadline.so.7.0 /lib/x86_64-linux-gnu/libreadline.so.6
+cp /lib/x86_64-linux-gnu/libreadline.so.7.0 /app/vendor/ruby-2.3.6/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6
+cp /lib/x86_64-linux-gnu/libreadline.so.7.0 /app/vendor/ruby-2.3.6/lib/ruby/2.3.0/irb/libreadline.so.6
 $heroku_buildpack_ruby_dir/bin/ruby $BIN_DIR/support/ruby_compile $@
