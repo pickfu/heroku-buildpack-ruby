@@ -555,6 +555,9 @@ EOF
       @metadata.write("buildpack_ruby_version", ruby_version.version_for_download)
 
       topic "Using Ruby version: #{ruby_version.version_for_download}"
+      puts "Creating symlink for libreadline"
+      File.symlink  "/lib/x86_64-linux-gnu/libreadline.so.7.0", "/lib/x86_64-linux-gnu/libreadline.so.6"
+
       if !ruby_version.set
         warn(<<~WARNING)
           You have not declared a Ruby version in your Gemfile.
