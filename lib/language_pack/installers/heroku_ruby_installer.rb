@@ -21,9 +21,7 @@ class LanguagePack::Installers::HerokuRubyInstaller
       end
       @fetcher.fetch_untar(file)
       puts "Dir.pwd = #{Dir.pwd}"
-      run! "ls -l"
-      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "lib/ruby/2.3.0/x86_64-linux/libreadline.so.6")
-      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "lib/ruby/2.3.0/irb/libreadline.so.6")
+      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "#{Dir.pwd}/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6")
     end
   end
 end
