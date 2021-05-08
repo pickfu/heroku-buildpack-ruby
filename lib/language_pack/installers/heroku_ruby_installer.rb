@@ -1,6 +1,7 @@
 require 'language_pack/installers/ruby_installer'
 require 'language_pack/base'
 require 'language_pack/shell_helpers'
+require 'fileutils'
 
 class LanguagePack::Installers::HerokuRubyInstaller
   include LanguagePack::ShellHelpers, LanguagePack::Installers::RubyInstaller
@@ -19,6 +20,10 @@ class LanguagePack::Installers::HerokuRubyInstaller
         file.sub!("ruby", "ruby-build")
       end
       @fetcher.fetch_untar(file)
+      puts "Dir.pwd = #{Dir.pwd}"
+      run! "ls -l"
+      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "lib/ruby/2.3.0/x86_64-linux/libreadline.so.6")
+      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "lib/ruby/2.3.0/irb/libreadline.so.6")
     end
   end
 end
