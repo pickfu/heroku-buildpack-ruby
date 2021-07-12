@@ -21,7 +21,7 @@ begin
   LanguagePack::Instrument.trace 'compile', 'app.compile' do
     LanguagePack::ShellHelpers.initialize_env(ENV_DIR)
     if pack = LanguagePack.detect(ARGV[0], nil, LAYER_DIR)
-      pack.topic("Compiling #{pack.name}")
+      pack.topic("Compiling Custom #{pack.name}")
       pack.log("compile") do
         pack.build
       end
