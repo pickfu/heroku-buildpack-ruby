@@ -154,7 +154,7 @@ WARNING
       build_bundler
       # TODO post_bundler might need to be done in a new layer
       bundler.clean
-      gem_layer.metadata[:gems] = Digest::SHA2.hexdigest(File.read("Gemfile.lock"))
+      #gem_layer.metadata[:gems] = Digest::SHA2.hexdigest(File.read("Gemfile.lock"))
       gem_layer.metadata[:stack] = @stack
       gem_layer.metadata[:ruby_version] = run_stdout(%q(ruby -v)).strip
       gem_layer.metadata[:rubygems_version] = run_stdout(%q(gem -v)).strip
