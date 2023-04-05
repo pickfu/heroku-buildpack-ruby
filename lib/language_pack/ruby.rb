@@ -1,5 +1,5 @@
 require "tmpdir"
-require "digest/md5"
+#require "digest/md5"
 require "benchmark"
 require "rubygems"
 require "language_pack"
