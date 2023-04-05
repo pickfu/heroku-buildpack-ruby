@@ -10,9 +10,9 @@ BUILDPACK_DIR=$(dirname $BIN_DIR)
 
 source "$BIN_DIR/support/bash_functions.sh"
 heroku_buildpack_ruby_install_ruby "$BIN_DIR" "$BUILDPACK_DIR"
-cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.6.0/x86_64-linux/libcrypto.so.1.0.0
-cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.6.0/rubygems/core_ext/libcrypto.so.1.0.0
-cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.6.0/x86_64-linux/digest/libcrypto.so.1.0.0
+cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.3.0/x86_64-linux/libcrypto.so.1.0.0
+cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.3.0/rubygems/core_ext/libcrypto.so.1.0.0
+cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.3.0/x86_64-linux/digest/libcrypto.so.1.0.0
 echo "$(tree -a $heroku_buildpack_ruby_dir/lib)"
 echo "$(env)"
 
