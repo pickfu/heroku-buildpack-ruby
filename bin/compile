@@ -15,6 +15,7 @@ echo "$(tree -a $BUILD_DIR/vendor)"
 echo "$(tree -a $heroku_buildpack_ruby_dir)"
 echo "$(tree -a $BUILDPACK_DIR)"
 cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.6.0/x86_64-linux/libcrypto.so.1.0.0
+cp -R /lib/x86_64-linux-gnu/libcrypto.so.1.1 $heroku_buildpack_ruby_dir/lib/ruby/2.6.0/rubygems/core_ext/libcrypto.so.1.0.0
 
 if detect_needs_java "$BUILD_DIR"; then
   cat <<EOM
