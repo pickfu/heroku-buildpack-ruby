@@ -29,5 +29,7 @@ EOM
 fi
 $heroku_buildpack_ruby_dir/bin/ruby $BIN_DIR/support/ruby_compile $@
 echo $(pwd)
-cp /lib/x86_64-linux-gnu/libreadline.so.7.0 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6
-cp /lib/x86_64-linux-gnu/libreadline.so.7.0 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/irb/libreadline.so.6
+cp -R /lib/x86_64-linux-gnu/libreadline.so.7 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6
+cp -R /lib/x86_64-linux-gnu/libreadline.so.7 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/irb/libreadline.so.6
+cp -R /lib/x86_64-linux-gnu/libreadline.so.7.0 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6
+cp -R /lib/x86_64-linux-gnu/libreadline.so.7.0 $BUILD_DIR/vendor/ruby-2.3.6/lib/ruby/2.3.0/irb/libreadline.so.6
