@@ -1,7 +1,7 @@
 require "language_pack"
 require "pathname"
 require "yaml"
-#require "digest/sha1"
+require "digest/sha1"
 require "language_pack/shell_helpers"
 require "language_pack/cache"
 require "language_pack/helpers/bundler_cache"
@@ -34,8 +34,7 @@ class LanguagePack::Base
       @cache         = LanguagePack::Cache.new(cache_path)
       @metadata      = LanguagePack::Metadata.new(@cache)
       @bundler_cache = LanguagePack::BundlerCache.new(@cache, @stack)
-      #@id            = Digest::SHA1.hexdigest("#{Time.now.to_f}-#{rand(1000000)}")[0..10]
-      @id            = "#{Time.now.to_f}-#{rand(1000000)}-#{rand(1000000)}".gsub(".", "")[0..10]
+      @id            = Digest::SHA1.hexdigest("#{Time.now.to_f}-#{rand(1000000)}")[0..10]
       @fetchers      = {:buildpack => LanguagePack::Fetcher.new(VENDOR_URL) }
       @layer_dir     = layer_dir
 

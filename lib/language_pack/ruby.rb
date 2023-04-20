@@ -1,5 +1,5 @@
 require "tmpdir"
-#require "digest/md5"
+require "digest/md5"
 require "benchmark"
 require "rubygems"
 require "language_pack"
@@ -154,7 +154,7 @@ WARNING
       build_bundler
       # TODO post_bundler might need to be done in a new layer
       bundler.clean
-      #gem_layer.metadata[:gems] = Digest::SHA2.hexdigest(File.read("Gemfile.lock"))
+      gem_layer.metadata[:gems] = Digest::SHA2.hexdigest(File.read("Gemfile.lock"))
       gem_layer.metadata[:stack] = @stack
       gem_layer.metadata[:ruby_version] = run_stdout(%q(ruby -v)).strip
       gem_layer.metadata[:rubygems_version] = run_stdout(%q(gem -v)).strip
@@ -1028,6 +1028,8 @@ params = CGI.parse(uri.query || "")
       raise_on_fail      = bundler.gem_version('railties') && bundler.gem_version('railties') > Gem::Version.new('3.x')
 
       topic "Detecting rake tasks"
+      topic "rake gem available: #{rake_gem_available}"
+      topic "raise on fail: #{raise_on_fail}"
       rake = LanguagePack::Helpers::RakeRunner.new(rake_gem_available)
       rake.load_rake_tasks!({ env: rake_env }, raise_on_fail)
       rake

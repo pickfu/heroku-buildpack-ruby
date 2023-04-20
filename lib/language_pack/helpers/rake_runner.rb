@@ -94,6 +94,7 @@ class LanguagePack::Helpers::RakeRunner
   end
 
   def load_rake_tasks!(options = {}, raise_on_fail = false)
+    topic "Loading rake tasks - #{!has_rake_installed?}"
     return if !has_rake_installed?
 
     out = load_rake_tasks(options)

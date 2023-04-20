@@ -30,7 +30,7 @@ class LanguagePack::Helpers::BinstubWrapper < SimpleDelegator
   def bad_shebang?
     return false if binary?
 
-    shebang.match?(/^#!\s*\/usr\/bin\/env\s*ruby(\d.*)$/) # https://rubular.com/r/ozbNEPVInc3sSN
+    shebang =~ /^#!\s*\/usr\/bin\/env\s*ruby(\d.*)$/ # https://rubular.com/r/ozbNEPVInc3sSN
   end
 
   # The first line of a binstub contains the "shebang" line
