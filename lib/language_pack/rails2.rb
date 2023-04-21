@@ -27,8 +27,8 @@ class LanguagePack::Rails2 < LanguagePack::Ruby
 
   def default_env_vars
     {
-      "RAILS_ENV" => "production",
-      "RACK_ENV" => "production"
+      "RAILS_ENV" => ENV["RAILS_ENV"] || "production",
+      "RACK_ENV" => ENV["RACK_ENV"] || "production"
     }
   end
 
