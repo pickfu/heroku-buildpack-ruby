@@ -535,7 +535,13 @@ EOF
     instrument 'ruby.install_ruby' do
       # Could do a compare operation to avoid re-downloading ruby
       return false unless ruby_version
-      installer = LanguagePack::Installers::RubyInstaller.installer(ruby_version).new("heroku-16")
+      # PickFu M2: was hardcoded "heroku-16" — fine while the app ruby (2.3.6)
+      # existed in that stack's bucket, but ruby 2.6.10+ binaries only exist for
+      # heroku-18. Use the real stack (ENV["STACK"]) — EXCEPT for 2.3.x, which
+      # Heroku never published for heroku-18 (S3 403): keep the heroku-16 bucket
+      # so pre-upgrade branches (master, Rails 3) build exactly as before.
+      ruby_stack = ruby_version.version_for_download.start_with?("ruby-2.3.") ? "heroku-16" : @stack
+      installer = LanguagePack::Installers::RubyInstaller.installer(ruby_version).new(ruby_stack)
 
       @ruby_download_check = LanguagePack::Helpers::DownloadPresence.new(ruby_version.file_name)
       @ruby_download_check.call

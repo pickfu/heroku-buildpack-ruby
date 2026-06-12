@@ -20,8 +20,14 @@ class LanguagePack::Installers::HerokuRubyInstaller
         file.sub!("ruby", "ruby-build")
       end
       @fetcher.fetch_untar(file)
-      puts "Dir.pwd = #{Dir.pwd}"
-      FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "#{Dir.pwd}/lib/ruby/2.3.0/x86_64-linux/libreadline.so.6")
+      # PickFu: the heroku-16 ruby-2.3.6 binary links libreadline.so.6, which
+      # heroku-18 doesn't ship — shim the stack's .so.7 in under that name.
+      # Native heroku-18 rubies (2.6.10+, M2) link the stack readline directly
+      # and have no 2.3.0 ABI dir, so skip when absent.
+      legacy_readline_dir = "#{Dir.pwd}/lib/ruby/2.3.0/x86_64-linux"
+      if File.directory?(legacy_readline_dir)
+        FileUtils.cp("/lib/x86_64-linux-gnu/libreadline.so.7.0", "#{legacy_readline_dir}/libreadline.so.6")
+      end
     end
   end
 end
